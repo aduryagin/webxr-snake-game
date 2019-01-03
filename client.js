@@ -221,7 +221,7 @@ class Snake {
       if (snakeBodyBox.box) {
         snakeBodyBox.box.position.set(snakeBodyBox.coordinates.x, snakeBodyBox.coordinates.y, snakeBodyBox.coordinates.z);
       } else {
-        const snakeBoxGeometry = new THREE.SphereGeometry(this.snakeBoxSize, this.snakeBoxSize, this.snakeBoxSize);
+        const snakeBoxGeometry = new THREE.BoxGeometry(this.snakeBoxSize, this.snakeBoxSize, this.snakeBoxSize);
         const snakeBoxMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
         const snakeBox = new THREE.Mesh(snakeBoxGeometry, snakeBoxMaterial);
         snakeBox.castShadow = true;
@@ -254,11 +254,11 @@ class App {
 
     const light = new THREE.AmbientLight(0xffffff, 1);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 1);
+    directionalLight.position.set(0, 0, 0);
 
     directionalLight.castShadow = true;
 
-    const planeGeometry = new THREE.PlaneGeometry(2000, 2000);
+    const planeGeometry = new THREE.PlaneGeometry(200, 200);
     planeGeometry.rotateX(-Math.PI / 2);
 
     const shadowMesh = new THREE.Mesh(planeGeometry, new THREE.ShadowMaterial({
@@ -331,7 +331,7 @@ class App {
     // camera
     this.camera = new THREE.PerspectiveCamera();
     this.camera.matrixAutoUpdate = false;
-
+    
     // create grid
     this.grid = Grid.create(this.OBJECTS_SCALE);
     this.snake = new Snake(this.grid);

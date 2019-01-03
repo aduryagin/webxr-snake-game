@@ -1,12 +1,15 @@
 {
   "name": "webxr-snake-game",
   "version": "1.0.0",
-  "description": "",
-  "main": "client.js",
+  "description": "WebXR Snake game",
   "scripts": {
+    "dev": "nodemon server",
     "start": "node server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": ["web", "xr"],
+  "author": "Alexey Duryagin",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
 }
