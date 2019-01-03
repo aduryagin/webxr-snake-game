@@ -252,13 +252,13 @@ class App {
   createLitScene() {
     const scene = new THREE.Scene();
 
-    const light = new THREE.AmbientLight(0xffffff, 1);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(0, 0, 0);
+    const light = new THREE.AmbientLight(0xffffff, 0.4);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(1, 1, 1);
 
     directionalLight.castShadow = true;
 
-    const planeGeometry = new THREE.PlaneGeometry(200, 200);
+    const planeGeometry = new THREE.PlaneGeometry(10, 10);
     planeGeometry.rotateX(-Math.PI / 2);
 
     const shadowMesh = new THREE.Mesh(planeGeometry, new THREE.ShadowMaterial({
