@@ -11,6 +11,7 @@ const server = http.createServer((request, response) => {
   let contentType = 'text/html';
 
   switch (extname) {
+    case '.mjs':
     case '.js':
       contentType = 'text/javascript';
       break;
