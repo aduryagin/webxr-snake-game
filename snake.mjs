@@ -1,3 +1,5 @@
+import Grid from './grid.mjs'
+
 export default class Snake {
     constructor(grid) {
       this.grid = grid;
