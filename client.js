@@ -178,9 +178,7 @@ class Snake {
   }
 
   startWalking() {
-    this.walking = true;
-
-    setInterval(() => {
+    this.walking = setInterval(() => {
       const headXCoordinate = this.normalizeCoordinate(this.snakeBody[0].coordinates.x + this.snakeStep.x);
       const headZCoordinate = this.normalizeCoordinate(this.snakeBody[0].coordinates.z + this.snakeStep.z);
 
@@ -207,6 +205,10 @@ class Snake {
         this.grid.remove(this.foodBox);
         this.generateFood();
         this.boost += 2;
+
+        // speedup
+        clearInterval(this.walking);
+        this.startWalking();
       } else {
         const { box } = this.snakeBody.pop();
         this.grid.remove(box);
@@ -252,7 +254,7 @@ class App {
   createLitScene() {
     const scene = new THREE.Scene();
 
-    const light = new THREE.AmbientLight(0xffffff, 0.4);
+    const light = new THREE.AmbientLight(0xffffff, 0.3);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
     directionalLight.position.set(1, 1, 1);
 
