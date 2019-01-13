@@ -58,7 +58,12 @@ class App {
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     this.gl = this.renderer.getContext();
-    await this.gl.setCompatibleXRDevice(this.session.device);
+    
+    if ('setCompatibleXRDevice' in this.gl) {
+      await this.gl.setCompatibleXRDevice(this.session.device);
+    } else {
+      await this.gl.makeXRCompatible();
+    }
 
     this.session.baseLayer = new XRWebGLLayer(this.session, this.gl);
 
@@ -78,7 +83,14 @@ class App {
 
     this.initEvents();
 
-    this.frameOfRef = await this.session.requestFrameOfReference('eye-level');
+    this.frameOfRef = await (
+      'requestFrameOfReference' in this.session ?
+      this.session.requestFrameOfReference('eye-level') :
+      this.session.requestReferenceSpace({
+        type: 'stationary',
+        subtype: 'eye-level',
+      })
+    );
     this.session.requestAnimationFrame(this.onXRFrame);
   }
 

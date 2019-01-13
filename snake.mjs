@@ -192,7 +192,7 @@ export default class Snake {
         if (this.foodCoordinates.x === headXCoordinate && this.foodCoordinates.z === headZCoordinate) {
           this.grid.remove(this.foodBox);
           this.generateFood();
-          this.boost += 2;
+          this.boost += 0.5;
   
           // speedup
           clearInterval(this.walking);
